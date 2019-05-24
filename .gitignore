@@ -1,0 +1,3 @@
+filecoin_data/*
+!filecoin_data/.gitkeep
+go-filecoin

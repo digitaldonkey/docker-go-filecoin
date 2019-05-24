@@ -1,0 +1,11 @@
+version: '3'
+services:
+  filecoin:
+    build: .
+    ports:
+    - "6000:6000"
+    - "3453:3453"
+    volumes:
+    - ./filecoin_data:/data/filecoin
+    environment:
+    - FILECOIN_PATH=/data/filecoin
