@@ -2,14 +2,11 @@
 
 *Overview*
 
-# Clone go-filecoin repo and build Docker
-# Set up a local data directory
-# Run go-filecoin miner with docker-compose
-
-Starting point is a local directory _FileCoinWork_:
+Purpose is to run the go-filecoin default implementation from source with a local data directory. 
 
 ```bash
-mkdir FileCoinWork && cd  "$_"
+git clone git@github.com:digitaldonkey/docker-go-filecoin.git
+cd docker-go-filecoin
 ```
 
 ## Build Base image "filecoin_base" from go-filecoin Dockerfile
@@ -17,35 +14,28 @@ mkdir FileCoinWork && cd  "$_"
 ```bash
 git clone git@github.com:filecoin-project/go-filecoin.git
 cd go-filecoin
-
-Search for current pre-stable tag (Its the "User Devnet Release 0.2.X" basge in above repository).
-Or whatever filecoin version you want to run. e.g:
-
-git checkout -b 0.2.2 && git checkout 0.2.2
 ```
 
-Create a local Docker image and give it an name and tag
+Check out the go-filecoin version you want to run. e.g:
+
+```bash
+git checkout 0.2.2 && git checkout -b 0.2.2 
+```
+
+Create a local Docker image and give it a name and tag. 
 
 ```bash
 docker build -t filecoin_base:0.2.2 .
 ```
 
-## Set up local data directory
-
-```bash
-cd FileCoinWork
-mkdir filecoin_data
-```
+<small>**Note:**<br/>Name and tag must be corresponding with `FROM filecoin_base:0.2.2` as set in *docker-go-filecoin/Dockerfile*.</small>
 
 ## Start mining
 
 Get the composer files
 
 ```bash
-cd FileCoinWork
 
-git clone git@github.com:digitaldonkey/docker-go-filecoin.git
-cd docker-go-filecoin
 
 docker-compose build
 docker-compose up
